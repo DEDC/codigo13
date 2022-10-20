@@ -1,6 +1,6 @@
 {% extends 'admin/base.html' %}
 {% load static %}
-{% block title %}MarketPlace | Admin{% endblock %}
+{% block title %}Código13 | Admin{% endblock %}
 {% block head %}
 {{block.super}}
 <link rel="stylesheet" href="{% static 'css/styles_admin.css' %}">
@@ -12,7 +12,7 @@
         <div class="nav-wrapper grey darken-2">
             <a href="#" style="font-size: 20px; margin-left: 15px; font-weight: 600;">Código13</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">Cerrar sesión</a></li>
+                <li><a href="{% url 'admin:logout' %}">Cerrar sesión</a></li>
                 <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 </li>
             </ul>
