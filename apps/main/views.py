@@ -4,10 +4,12 @@ from apps.main.models import Artistas
 
 
 class Home(TemplateView):
-    extra_context = {
-        'artists': Artistas.objects.all()
-    }
     template_name = 'public/index.html'
+
+    def get_context_data(self, **kwargs):
+       context = super(Home, self).get_context_data(**kwargs)
+       context['artists'] = Artistas.objects.all()
+       return context
 
 class Artista(DetailView):
     template_name = 'public/artista.html'
