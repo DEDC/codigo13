@@ -33,3 +33,8 @@ class UploadTo:
 
   def deconstruct(self):
     return ('utils.models.UploadTo', [self.name, self.folder_name], {})
+  
+
+def path_image(instance, filename):
+    extfile = filename.split('.')[-1]
+    return 'images/artists/{}/img-{}.{}'.format(instance.uuid, str(instance.uuid)[:8], extfile)

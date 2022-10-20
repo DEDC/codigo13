@@ -1,56 +1,84 @@
-{% extends 'base/base.html' %}
+{% extends 'public/base.html' %}
 {% load static %}
-{% block head %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shorthandcss@1.1.1/dist/shorthand.min.css" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Muli:200,300,400,500,600,700,800,900&display=swap" />
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
-{% endblock %}
-{% block body %}
-{% block navbar %}
-    <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-black">
-        <div class="flex justify-between">
-            <a href="#" class="flex items-center p-2 mr-4 no-underline">
-                <h1 class="max-h-l2 w-auto white fw-900">Código13</h1>
-            </a>
-            <a data-toggle="toggle-nav" data-target="#nav-items" href="#"
-                class="flex items-center ml-auto md-hidden indigo-lighter opacity-50 hover-opacity-100 ease-300 p-1 m-3">
-                <i data-feather="menu"></i>
-            </a>
-        </div>
-        <div id="nav-items" class="hidden flex sm-w-100pc flex-column md-flex md-flex-row md-justify-end items-center">
-            <a href="#home" class="fs-s1 mx-3 py-3 white no-underline">Inicio</a>
-            <a href="#slider-1" class="fs-s1 mx-3 py-3 white no-underline">¿Cómo reservar?</a>
-            <a href="#bands" class="button bg-white black fw-600 no-underline mx-5">Bandas disponibles</a>
-            <!-- <a href="#blog" class="fs-s1 mx-3 py-3 indigo no-underline">Blog</a> -->
-            <!-- <a href="#" class="button bg-white black fw-600 no-underline mx-5">Register</a> -->
-        </div>
-    </nav>
-{% endblock %}
-<!-- hero section -->
-<section id="home" class="min-h-100vh flex justify-start items-center" style="background-image: url({% static 'images/back.jpg' %}); background-position: center; background-repeat: no-repeat; background-size: cover;">
+{% block content %}
+<section id="home" class="min-h-100vh flex justify-start items-center"
+    style="background-image: url({% static 'images/back.jpg' %}); background-position: center; background-repeat: no-repeat; background-size: cover;">
     <div class="mx-5 md-mx-l5">
-        <div class="inline-block br-round bg-indigo-30 indigo-lightest p-2 fs-s2 mb-5">
-            <div class="inline-block bg-indigo indigo-lightest br-round px-3 py-1 mr-3 fs-s3">Join Meet Up</div>
-            We are coming to Singapore. Learn more…
-        </div>
         <div>
             <h1 class="white fs-l3 lh-2 md-fs-xl1 md-lh-1 fw-900 white">Código 13</h1>
 
             <div class="br-8 mt-10 inline-flex">
                 <input type="text"
                     class="input-lg half bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 min-w-25vw br-r-0"
-                    placeholder="Email Address">
+                    placeholder="Busca un artista o banda">
                 <button
-                    class="button-lg bg-indigo-lightest-20 indigo-lightest focus-white fw-300 fs-s3 mr-0 br-l-0">Get
-                    Started</button>
-            </div>
-            <div class="white opacity-20 fs-s3 mt-3">No credit card required</span>
+                    class="button-lg bg-indigo-lightest-20 indigo-lightest focus-white fw-300 fs-s3 mr-0 br-l-0">Buscar</button>
             </div>
         </div>
 </section>
+<section class="relative bg-indigo-lightest-10">
+    <div id="slider-1">
+        <div class="p-10 md-p-l10 flex justify-center items-center flex-column text-center">
+            <h2 class="white fs-l3 fw-900">1- Selecciona tu banda favorita</h2>
+            <p class="indigo-lightest fw-600 fs-m1 opacity-30 my-5">En la sección de bandas disponibles puedes
+                seleccionar la banda que más se adecúe a tu evento. Ya sea norteña o rock, contamos con una gran
+                variedad de artistas.</p>
+            <a href="#" class="button-md bg-indigo white fs-s2 br-4 black fw-900 no-underline m-5">Ver bandas
+                disponibles</a>
+        </div>
+        <div class="p-10 md-p-l10 flex justify-center items-center flex-column text-center">
+            <h2 class="white fs-l3 fw-900">2- Agenda a tu banda favorita</h2>
+            <p class="indigo-lightest fw-600 fs-m1 opacity-30 my-5">Una vez seleccionada tu banda, checa las fechas
+                disponibles y selecciona la que más se ajuste a tu calendario.</p>
+            <a href="#" class="button-md bg-indigo white fs-s2 br-4 black fw-900 no-underline m-5">Ver bandas
+                disponibles</a>
+        </div>
+        <div class="p-10 md-p-l10 flex justify-center items-center flex-column text-center">
+            <h2 class="white fs-l3 fw-900">3- Háblanos de ti</h2>
+            <p class="indigo-lightest fw-600 fs-m1 opacity-30 my-5">Mediante el formulario de contacto ingresa tu
+                información de contacto para fijar los detalles de la contratación.</p>
+            <a href="#" class="button-md bg-indigo white fs-s2 br-4 black fw-900 no-underline m-5">Ver bandas
+                disponibles</a>
+        </div>
+        <div class="p-10 md-p-l10 flex justify-center items-center flex-column text-center">
+            <h2 class="white fs-l3 fw-900">4- Haz tu reservación mediante pago</h2>
+            <p class="indigo-lightest fw-600 fs-m1 opacity-30 my-5">Una vez agendada la fecha, realiza el pago para
+                finalizar el apartado de la banda mediante las variadas modalidades que tenemos disponibles para ti.</p>
+            <a href="#" class="button-md bg-indigo white fs-s2 br-4 black fw-900 no-underline m-5">Ver bandas
+                disponibles</a>
+        </div>
+    </div>
+    <ul class="absolute list-none w-100pc flex justify-between top-50pc">
+        <li><button
+                class="prev ml-10 br-round border-indigo-lightest indigo-lightest  bg-transparent flex justify-center items-center p-2 focus-indigo-lighter outline-none"><i
+                    data-feather="chevron-left"></i></button></li>
+        <li><button
+                class="next mr-10 br-round border-indigo-lightest indigo-lightest  bg-transparent flex justify-center items-center p-2  focus-indigo-lighter outline-none"><i
+                    data-feather="chevron-right"></i></button></li>
+    </ul>
+</section>
+<section class="p-10 md-py-10">
+    <div class="w-100pc md-w-70pc mx-auto py-10">
+        <h2 class="white fs-l2 md-fs-xl1 fw-900 lh-2">
+            Contrata a las <span class="border-b bc-indigo bw-4"> mejores bandas</span> para tus shows y conciertos</h2>
+    </div>
+</section>
+<section class="p-0 md-p-5" id="bands">
+    <div class="flex flex-wrap">
+        {% for ar in artists %}
+        <div class="w-100pc md-w-33pc p-10">
+            <a href="{% url 'contratar' ar.slug %}"
+                class="block no-underline p-5 br-8 hover-bg-indigo-lightest-10 hover-scale-up-1 ease-300">
+                <img class="w-100pc" src="{{ar.imagen.url}}" alt="">
+                <p class="fw-900 white fs-m3 mt-3">{{ar.nombre}}</p>
+                <div class="button-md bg-indigo fs-s2 my-4 fw-600">Contratar</div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+<!-- hero section -->
 <!-- features -->
 <!-- <section id="features" class="p-10 md-p-l5">
     <div class="flex flex-column md-flex-row mx-auto">
@@ -89,45 +117,7 @@
         </div>
     </div>
 </section> -->
-<section class="relative bg-indigo-lightest-10">
-    <div id="slider-1">
-        <div class="p-10 md-p-l10 flex justify-center items-center flex-column text-center">
-            <h2 class="white fs-l3 fw-900">1- Selecciona tu banda favorita</h2>
-            <p class="indigo-lightest fw-600 fs-m1 opacity-30 my-5">En la sección de bandas disponibles puedes seleccionar la banda que más se adecúe a tu evento. Ya sea norteña o rock, contamos con una gran variedad de artistas.</p>
-            <a href="#" class="button-md bg-indigo white fs-s3 br-4 black fw-600 no-underline m-5">VER BANDAS DISPONIBLES</a>
-        </div>
-        <div class="p-10 md-p-l10 flex justify-center items-center flex-column text-center">
-            <h2 class="white fs-l3 fw-900">2- Agenda a tu banda favorita</h2>
-            <p class="indigo-lightest fw-600 fs-m1 opacity-30 my-5">Una vez seleccionada tu banda, checa las fechas disponibles y selecciona la que más se ajuste a tu calendario.</p>
-            <a href="#" class="button-md bg-indigo white fs-s3 br-4 black fw-600 no-underline m-5">VER BANDAS DISPONIBLES</a>
-        </div>
-        <div class="p-10 md-p-l10 flex justify-center items-center flex-column text-center">
-            <h2 class="white fs-l3 fw-900">3- Háblanos de ti</h2>
-            <p class="indigo-lightest fw-600 fs-m1 opacity-30 my-5">Mediante el formulario de contacto ingresa tu información de contacto para fijar los detalles de la contratación.</p>
-            <a href="#" class="button-md bg-indigo white fs-s3 br-4 black fw-600 no-underline m-5">VER BANDAS DISPONIBLES</a>
-        </div>
-        <div class="p-10 md-p-l10 flex justify-center items-center flex-column text-center">
-            <h2 class="white fs-l3 fw-900">4- Haz tu reservación mediante pago</h2>
-            <p class="indigo-lightest fw-600 fs-m1 opacity-30 my-5">Una vez agendada la fecha, realiza el pago para finalizar el apartado de la banda mediante las variadas modalidades que tenemos disponibles para ti.</p>
-            <a href="#" class="button-md bg-indigo white fs-s3 br-4 black fw-600 no-underline m-5">VER BANDAS DISPONIBLES</a>
-        </div>
-    </div>
-    <ul class="absolute list-none w-100pc flex justify-between top-50pc">
-        <li><button
-                class="prev ml-10 br-round border-indigo-lightest indigo-lightest  bg-transparent flex justify-center items-center p-2 focus-indigo-lighter outline-none"><i
-                    data-feather="chevron-left"></i></button></li>
-        <li><button
-                class="next mr-10 br-round border-indigo-lightest indigo-lightest  bg-transparent flex justify-center items-center p-2  focus-indigo-lighter outline-none"><i
-                    data-feather="chevron-right"></i></button></li>
-    </ul>
-</section>
 <!-- big text -->
-<section class="p-10 md-py-10">
-    <div class="w-100pc md-w-70pc mx-auto py-10">
-        <h2 class="white fs-l2 md-fs-xl1 fw-900 lh-2">
-            Contrata a las <span class="border-b bc-indigo bw-4"> mejores bandas</span> para tus shows y conciertos</h2>
-    </div>
-</section>
 <!-- product options -->
 <!-- <section class="py-l10">
     <div class="flex flex-column md-flex-row md-w-80pc mx-auto">
@@ -359,135 +349,7 @@
     </div>
 
 </section> -->
-
 <!-- blog -->
-<section class="p-0 md-p-5" id="bands">
-    <div class="flex flex-wrap">
-        <div class="w-100pc md-w-33pc p-10">
-            <a href="#" class="block no-underline p-5 br-8 hover-bg-indigo-lightest-10 hover-scale-up-1 ease-300">
-                <img class="w-100pc" src="{% static 'images/band1.jpg' %}" alt="">
-                <p class="fw-600 white fs-m3 mt-3">
-                    Sonora Dinamita
-                </p>
-                <div class="button-md bg-indigo fs-s3 italic after-arrow-right my-4">Contratar</div>
-            </a>
-        </div>
-        <div class="w-100pc md-w-33pc p-10">
-            <a href="#" class="block no-underline p-5 br-8 hover-bg-indigo-lightest-10 hover-scale-up-1 ease-300">
-                <img class="w-100pc" src="{% static 'images/band2.jpg' %}" alt="">
-                <p class="fw-600 white fs-m3 mt-3">
-                    Maná
-                </p>
-                <div class="button-md bg-indigo fs-s3 italic after-arrow-right my-4">Contratar</div>
-            </a>
-        </div>
-        <div class="w-100pc md-w-33pc p-10">
-            <a href="#" class="block no-underline p-5 br-8 hover-bg-indigo-lightest-10 hover-scale-up-1 ease-300">
-                <img class="w-100pc" src="{% static 'images/band3.jpg' %}" alt="">
-                <p class="fw-600 white fs-m3 mt-3">
-                    The Beatles
-                </p>
-                <div class="button-md bg-indigo fs-s3 italic after-arrow-right my-4">Contratar</div>
-            </a>
-        </div>
-
-    </div>
-</section>
 <!-- subscribe
-<section class="p-10 md-p-l5">
-    <div class="br-8 bg-indigo-lightest-10 p-5 md-p-l5 flex flex-wrap md-justify-between md-items-center">
-        <div class="w-100pc md-w-33pc">
-            <h2 class="white fs-m4 fw-800">Try Hook today</h2>
-            <p class="fw-600 indigo-lightest opacity-40">Get first month free for commercial use. Forever free for
-                open source products.</p>
-        </div>
-        <div class="w-100pc md-w-50pc">
-            <div class="flex my-5">
-                <input type="text"
-                    class="input-lg flex-grow-1 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 br-r-0"
-                    placeholder="Email Address">
-                <button class="button-lg bg-indigo indigo-lightest fw-300 fs-s3 br-l-0">Get Started</button>
-            </div>
-        </div>
-    </div>
-</section> -->
+
 <!-- footer -->
-{% block footer %}
-<footer class="p-5 md-p-l5 bg-indigo-lightest-10">
-    <div class="flex flex-wrap">
-        <div class="md-w-25pc mb-10">
-            <h2 class="w-15 white fw-900">Código13</h2>
-            <div class="white opacity-70 fs-s2 mt-4 md-pr-10">
-                <p>Somos una plataforma digital en la que puedes contratar y agendar bandas musicales para tus próximos eventos.</p>
-                <br>
-            </div>
-        </div>
-        <div class="w-100pc md-w-50pc">
-            <div class="flex justify-around">
-                <div class="w-33pc md-px-10 mb-10">
-                    <h5 class="white">Company</h5>
-                    <ul class="list-none mt-5 fs-s2">
-                        <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">About
-                                Us</a></li>
-                        <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Jobs</a>
-                        </li>
-                        <li class="my-3"><a href="#"
-                                class="white opacity-70 no-underline hover-underline">Contact</a></li>
-                        <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Media</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="w-33pc md-px-10 mb-10">
-                    <h5 class="white">Product</h5>
-                    <ul class="list-none mt-5 fs-s2">
-                        <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">About
-                                Us</a></li>
-                        <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Jobs</a>
-                        </li>
-                        <li class="my-3"><a href="#"
-                                class="white opacity-70 no-underline hover-underline">Contact</a></li>
-                        <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Media</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="w-33pc md-px-10 mb-10">
-                    <h5 class="white">Support</h5>
-                    <ul class="list-none mt-5 fs-s2">
-                        <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">About
-                                Us</a></li>
-                        <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Jobs</a>
-                        </li>
-                        <li class="my-3"><a href="#"
-                                class="white opacity-70 no-underline hover-underline">Contact</a></li>
-                        <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Media</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="w-100pc md-w-25pc">
-            <div class="flex w-75pc md-w-100pc mx-auto">
-                <input type="text"
-                    class="input flex-grow-1 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 br-r-0"
-                    placeholder="Email Address">
-                <button class="button bg-indigo indigo-lightest fw-300 fs-s3 br-l-0">Start</button>
-            </div>
-            <div class="flex justify-around my-8">
-                <a href="#" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><i
-                        data-feather="twitter" class="absolute-center h-4"></i></a>
-                <a href="#" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><i
-                        data-feather="facebook" class="absolute-center h-4"></i></a>
-                <a href="#" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><i
-                        data-feather="instagram" class="absolute-center h-4"></i></a>
-            </div>
-        </div>
-    </div>
-</footer>
-{% endblock %}
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://unpkg.com/feather-icons"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-<script
-    src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"></script>
-<script src="{% static 'js/script.js' %}"></script>
-{% endblock %}

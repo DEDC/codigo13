@@ -1,0 +1,68 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block title %}MarketPlace | Admin{% endblock %}
+{% block head %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/styles_admin.css' %}">
+{% endblock %}
+{% block body %}
+{% block navbar %}
+<header>
+    <nav>
+        <div class="nav-wrapper grey darken-2">
+            <a href="#" style="font-size: 20px; margin-left: 15px; font-weight: 600;">Código13</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#">Cerrar sesión</a></li>
+                <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </li>
+            </ul>
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+</header>
+{% endblock %}
+{% block sidenav %}
+<aside>
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+        <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li>
+                    <a class="collapsible-header">Eventos<i class="material-icons">event</i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="#"><i class="material-icons">list</i>Listar</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li>
+                    <a class="collapsible-header">Artistas<i class="material-icons">album</i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="{% url 'admin:list_artist' %}"><i class="material-icons">list</i>Listar</a>
+                            </li>
+                            <li><a href="{% url 'admin:create_artist' %}"><i class="material-icons">add</i>Crear</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a>Agenda<i class="material-icons">calendar_month</i></a>
+        </li>
+    </ul>
+</aside>
+{% endblock %}
+<main>
+    {% block validations %}
+    {% include 'base/validaciones.html' %}
+    {% endblock %}
+    {% block main %}
+    {% endblock %}
+</main>
+{% endblock %}

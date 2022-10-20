@@ -1,0 +1,62 @@
+{% extends 'admin/base_admin.html' %}
+{% block main %}
+<div class="container container-lg container-margin">
+    <div class="options">
+        <div class="btns">
+            <a class="btn grey darken-2" href="{% url 'admin:list_artist' %}">Listado<i
+                    class="material-icons left">list</i></a>
+        </div>
+    </div>
+    <div class="card-panel">
+        <h5 class="center-align grey-text text-darken-2"><b>Registro de un artista/banda</b></h5>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <div class="input-field">
+                        {{form.nombre.label_tag}}
+                        {{form.nombre}}
+                        <span class="helper-text red-text">{{form.nombre.errors}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <div class="input-field">
+                        {{form.descripcion.label_tag}}
+                        {{form.descripcion}}
+                        <span class="helper-text red-text">{{form.descripcion.errors}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <div class="input-field">
+                        {{form.precio_hora.label_tag}}
+                        {{form.precio_hora}}
+                        <span class="helper-text red-text">{{form.precio_hora.errors}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <div class="file-field input-field">
+                        <div class="btn grey">
+                            <span>{{form.imagen.label}}</span>
+                            {{form.imagen}}
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <button class="btn grey darken-2 btn-block" type="submit">Registrar producto</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

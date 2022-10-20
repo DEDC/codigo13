@@ -1,0 +1,133 @@
+{% extends 'admin/base.html' %}
+{% load humanize %}
+{% block main %}
+<div class="container container-lg container-margin">
+    <div class="options">
+        <div class="btns">
+            <a class="btn grey darken-2" href="{% url 'admin:create_product' %}">Agregar<i
+                    class="material-icons left">add</i></a>
+        </div>
+        <form>
+            <span uk-search-icon></span>
+            <input type="text" name="search" id="search" style="width: 200px;">
+        </form>
+    </div>
+    <div class="card-panel">
+        <h5 class="grey-text center-align text-darken-2"><b>Listado de productos</b></h5>
+        <p class="grey-text">{{object_list.count}} resultado(s)</p>
+        <ul class="collapsible">
+            {% for pdt in object_list %}
+            <li>
+                <div class="collapsible-header">
+                    <i class="material-icons grey-text text-darken-2">widgets</i>
+                    <b class="grey-text text-darken-2">{{pdt.folio}}</b>&nbsp;&nbsp;
+                    <b class="grey-text">{{pdt.nombre}}</b>
+                    <div class="collapsible-secondary not-collapse">
+                        <a class='dropdown-trigger' href='#' data-target='dropdown{{pdt.pk}}'><i
+                                class="material-icons grey-text text-darken-2">more_vert</i></a>
+                        <ul id='dropdown{{pdt.pk}}' class='dropdown-content'>
+                            <li><a href="{% url 'admin:update_product' pdt.pk pdt.slug %}"
+                                    class="grey-text text-darken-2"><i class="material-icons">edit</i>Editar</a></li>
+                            <li><a href="#!" class="grey-text text-darken-2"><i
+                                        class="material-icons">delete</i>Eliminar</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="collapsible-body">
+                    <div class="row">
+                        <div class="col l4 m4 s12">
+                            <h6><b>Folio</b></h6>
+                            <span><a target="__blank"
+                                    href="{% url 'mkt:producto' pdt.slug pdt.uuid %}">{{pdt.folio}}</a></span>
+                        </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Nombre</b></h6>
+                            <span>{{pdt.nombre}}</span>
+                        </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Descripción</b></h6>
+                            <a href="#descripcion" class="grey-text"><i class="material-icons">subject</i></a>
+                            <div uk-dropdown="mode: click; pos: bottom-center">
+                                {{pdt.descripcion}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l4 m4 s12">
+                            <h6><b>Cantidad</b></h6>
+                            <span>{{pdt.cantidad}}</span>
+                        </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Precio</b></h6>
+                            <span>${{pdt.precio|intcomma}}</span>
+                        </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Comisión</b></h6>
+                            <span>${{pdt.comision|intcomma}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l4 m4 s12">
+                            <h6><b>Tipo de comisión</b></h6>
+                            <span>{{pdt.get_tipo_comision_display}}</span>
+                        </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Precio público</b></h6>
+                            {% with final_price=pdt.get_public_price %}
+                            <span>${{final_price|intcomma}}</span>
+                            <div uk-dropdown="mode: click; pos: top-center">
+                                <p>
+                                    <b>Precio:</b>
+                                    <span>${{pdt.precio|intcomma}}</span>
+                                </p>
+                                <p>
+                                    <b>Comisión:</b>
+                                    <span>${{pdt.price_comi|intcomma}}</span>
+                                </p>
+                                <p>
+                                    <b>Precio + Comisión:</b>
+                                    <span>${{pdt.price_add_comi|intcomma}}</span>
+                                </p>
+                                <p>
+                                    <b>IVA:</b>
+                                    <span>${{pdt.price_with_iva|intcomma}}</span>
+                                </p>
+                                <p>
+                                    <b>Precio + Comisión + IVA:</b>
+                                    <span>${{pdt.price_add_iva|intcomma}}</span>
+                                </p>
+
+                                <p>
+                                    <b>Comisión de Stripe:</b>
+                                    <span>${{pdt.price_whit_stripe|intcomma}}</span>
+                                </p>
+                                <p>
+                                    <b>Precio + Comisión + IVA + Stripe:</b>
+                                    <span>${{final_price|intcomma}}</span>
+                                </p>
+                            </div>
+                            {% endwith %}
+                        </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Imagen</b></h6>
+                            <span>
+                                <div uk-lightbox>
+                                    <a href="{{pdt.imagen.url}}" class="grey-text"><i
+                                            class="material-icons">wallpaper</i></a>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l4 m4 s12">
+                            <h6><b>Categorías</b></h6>
+                            <span>{{pdt.categorias.first.nombre}}</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
