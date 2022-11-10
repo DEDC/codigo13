@@ -26,9 +26,17 @@
         </div>
         <div class="w-100pc md-w-50pc">
             <h3 class="white fs-m4 fw-900 mt-4">Costo por hora de servicio</h3>
-            <h4 class="fw-900 indigo-lightest">${{object.precio_hora}}</h4>
-            <h3 class="white fs-m4 fw-900 mt-4">Fechas disponibles</h3>
-            <h4 class="fw-900 indigo-lightest opacity-60">No disponibles por el momento</h4>
+            <div class="fs-s1 py-3 input-lg my-5 bg-indigo indigo-lightest">${{object.precio_hora}}</div>
+            <h3 class="white fs-m4 fw-900">Fechas disponibles</h3>
+            <div class="flex my-5">
+                <select name="" id="" class="fs-s1 py-3 input-lg bg-indigo indigo-lightest">
+                    {% for dt in object.data.dates %}
+                    <option value="{{dt}}">{{dt}} {{ dt|date:"d M Y" }} </option>
+                    {% empty %}
+                    <option>No disponibles por el momento</option>
+                    {% endfor %}
+                </select>
+            </div>
             <h3 class="white fs-m4 fw-900 mt-4">Contáctanos</h3>
             <div class="flex my-5">
                 <input type="text"

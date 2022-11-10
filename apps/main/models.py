@@ -8,8 +8,11 @@ class Artistas(ControlInfo):
     descripcion = models.TextField('Descripción')
     imagen = models.ImageField('Imagen', upload_to=path_image)
     precio_hora = models.DecimalField('Precio por hora de servicio', max_digits=8, decimal_places=2, null=True)
+    data = models.JSONField(null=True, blank=True, default=dict)
     slug = models.SlugField(editable = False, unique=True)
-
     def save(self, *args, **kwargs):
         self.slug = slugify(self.nombre)
         super(Artistas, self).save(*args, **kwargs)
+    
+    class Meta:
+        ordering = ['fecha_reg']

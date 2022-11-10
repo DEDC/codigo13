@@ -25,7 +25,7 @@
                         <a class='dropdown-trigger' href='#' data-target='dropdown{{pdt.pk}}'><i
                                 class="material-icons grey-text text-darken-2">more_vert</i></a>
                         <ul id='dropdown{{pdt.pk}}' class='dropdown-content'>
-                            <li><a href="#"
+                            <li><a href="{% url 'admin:edit_artist' pdt.slug %}"
                                     class="grey-text text-darken-2"><i class="material-icons">edit</i>Editar</a></li>
                             <li><a href="#!" class="grey-text text-darken-2"><i
                                         class="material-icons">delete</i>Eliminar</a></li>
@@ -45,7 +45,7 @@
                         </div>
                         <div class="col l4 m4 s12">
                             <h6><b>Descripción</b></h6>
-                            <a href="#descripcion" class="grey-text"><i class="material-icons">subject</i></a>
+                            <a href="#" class="grey-text"><i class="material-icons">subject</i></a>
                             <div uk-dropdown="mode: click; pos: bottom-center">
                                 {{pdt.descripcion}}
                             </div>
@@ -59,6 +59,20 @@
                                     <a href="{{pdt.imagen.url}}" class="grey-text"><i
                                             class="material-icons">wallpaper</i></a>
                                 </div>
+                            </span>
+                        </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Fechas registradas</b></h6>
+                            <ul>
+                                {% for dt in pdt.data.dates %}
+                                <li>{{dt}}</li>                        
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Precio por hora</b></h6>
+                            <span>
+                                ${{pdt.precio_hora}}
                             </span>
                         </div>
                     </div>
