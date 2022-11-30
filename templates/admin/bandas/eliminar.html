@@ -1,0 +1,29 @@
+{% extends 'admin/base_admin.html' %}
+{% block main %}
+<div class="container container-lg container-margin">
+    <div class="options">
+        <div class="btns">
+            <a class="btn grey darken-2" href="{% url 'admin:list_artist' %}">Listado<i
+                    class="material-icons left">list</i></a>
+        </div>
+    </div>
+    <div class="card-panel">
+        <h5 class="center-align grey-text text-darken-2"><b>Ocultar artista/banda ({{object.folio}})</b></h5>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <br><br>
+            <h5 class="center-align">¿Estás seguro(a) de ocultar a <b>{{object.nombre}}</b>?</h5>
+            <br><br>
+            <div class="center-align">
+                <button class="btn red">Sí</button>
+                <button class="btn grey">Cancelar</button>
+            </div>
+            <br><br>
+            <div class="center-align">
+                <img src="{{object.imagen.url}}" alt="" width="30%">
+            </div>
+            <br><br>
+        </form>
+    </div>
+</div>
+{% endblock %}

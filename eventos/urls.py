@@ -9,6 +9,7 @@ from apps.admin.views import Admin
 urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('contratar/<slug:slug>', Artista.as_view(), name='contratar'),
+    # path('solicitar/evento')
     path('buscar', Search.as_view(), name='search'),
     path('admin/', include('apps.admin.urls', namespace='admin'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

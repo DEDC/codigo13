@@ -1,4 +1,30 @@
 {% extends 'public/base.html' %}
+{% block head %}
+{{block.super}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        flatpickr("#dates", {
+            dateFormat: "Y-m-d",
+            inline: true,
+            enable: {{ dates| safe}}
+        });
+    var elems = document.querySelectorAll('select');
+    var elem2 = document.querySelector('.numInput');
+    elem2.classList.add('browser-default')
+    elems.forEach(e => {
+        e.classList.add('browser-default')
+    });
+    })
+</script>
+<style>
+    #dates {
+        width: 100%;
+    }
+</style>
+{% endblock %}
+
 {% block navbar %}
 <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-black">
     <div class="flex justify-between">
@@ -18,32 +44,67 @@
 {% endblock %}
 {% block content %}
 <section class="p-10 md-p-l5">
-    <div class="br-8 bg-indigo-lightest-10 p-5 md-p-l5 flex flex-wrap md-justify-between md-items-center">
+    <div class="br-8 bg-indigo-lightest-10 p-5 md-p-l5 flex flex-wrap md-justify-between">
         <div class="w-100pc md-w-33pc">
             <img src="{{object.imagen.url}}" alt="">
             <h1 class="white fs-l2 fw-900 mt-4">{{object.nombre}}</h1>
             <p class="fw-600 indigo-lightest opacity-40">{{object.descripcion}}</p>
         </div>
         <div class="w-100pc md-w-50pc">
-            <h3 class="white fs-m4 fw-900 mt-4">Costo por hora de servicio</h3>
-            <div class="fs-s1 py-3 input-lg my-5 bg-indigo indigo-lightest">${{object.precio_hora}}</div>
-            <h3 class="white fs-m4 fw-900">Fechas disponibles</h3>
-            <div class="flex my-5">
-                <select name="" id="" class="fs-s1 py-3 input-lg bg-indigo indigo-lightest">
-                    {% for dt in object.data.dates %}
-                    <option value="{{dt}}">{{dt}} {{ dt|date:"d M Y" }} </option>
-                    {% empty %}
-                    <option>No disponibles por el momento</option>
-                    {% endfor %}
-                </select>
+            {% if messages %}
+            {% for message in messages %}
+            {% if message.tags == 'success' %}
+            <div class="p-4 bg-green white">
+                <h2>Información enviada exitosamente.</h2>
+                <h3>En breve nos pondremos en contacto con usted.</h3>
             </div>
-            <h3 class="white fs-m4 fw-900 mt-4">Contáctanos</h3>
-            <div class="flex my-5">
-                <input type="text"
-                    class="input-lg flex-grow-1 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 br-r-0"
-                    placeholder="Correo electrónico">
-                <button class="button-lg bg-indigo indigo-lightest fw-300 fs-s3 br-l-0">Contratar</button>
+            <br><br>
+            {% elif message.tags == 'error' %}
+            <div class="p-4 bg-yellow white">
+                <h2>Ha ocurrido un problema al enviar la Información.</h2>
+                <h3>Inténtelo de nuevo más tarde.</h3>
             </div>
+            <br><br>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <h3 class="white fs-m4 fw-900">Fechas disponibles</h3>
+                <div class="my-5 flex" style="flex-direction: column;">
+                    <input required placeholder="Selecciona una fecha disponible en el calendario"
+                        class="input-lg mb-2 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s1 py-5 br-r-0"
+                        type="text" id="dates" name="fecha">
+                </div>
+                <h3 class="white fs-m4 fw-900">Hora del evento</h3>
+                <br>
+                <input required style="width: 100%;" type="time" name="hora"
+                    class="input-lg mb-2 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s1 py-5 br-r-0">
+                <br><br>
+                <h3 class="white fs-m4 fw-900">Háblanos acerca del evento</h3>
+                <br>
+                <textarea required name="descripcion" style="width: 100%; height: 100px;"
+                    class="input-lg mb-2 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s1 py-5 br-r-0"
+                    name="" id="" cols="30" rows="10"
+                    placeholder="Tipo de evento, número de invitados, etc."></textarea>
+                <input required name="lugar" style="width: 100%;" type="text"
+                    class="input-lg mb-2 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s1 py-5 br-r-0"
+                    placeholder="Lugar del evento">
+                <h3 class="white fs-m4 fw-900 mt-4">Información de contacto</h3>
+                <div class="my-5">
+                    <input required style="width: 100%;" type="text" name="nombre_cto"
+                        class="input-lg mb-2 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s1 py-5 br-r-0"
+                        placeholder="Nombre completo">
+                    <input required style="width: 100%;" type="tel" name="telefono_cto"
+                        class="input-lg mb-2 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s1 py-5 br-r-0"
+                        placeholder="Teléfono celular">
+                    <input required style="width: 100%;" type="email" name="correo_cto"
+                        class="input-lg mb-2 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s1 py-5 br-r-0"
+                        placeholder="Correo electrónico">
+                </div>
+                <button class="button-lg bg-indigo indigo-lightest fw-300 fs-s1 br-l-0">Enviar para
+                    contratación</button>
+            </form>
         </div>
     </div>
 </section>

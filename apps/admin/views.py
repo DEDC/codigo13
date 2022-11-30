@@ -1,11 +1,12 @@
 # Django
-from django.views.generic import TemplateView, CreateView, ListView, UpdateView
+from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from apps.main.models import Artistas
+from apps.main.models import Artistas, Eventos
 from apps.main.forms import ArtistForm
+from django.http import HttpResponseRedirect
 
 
 class Admin(LoginRequiredMixin, TemplateView):
@@ -58,3 +59,19 @@ class ListArtists(LoginRequiredMixin, ListView):
     model = Artistas
     template_name = 'admin/bandas/listar.html'
     login_url = reverse_lazy('admin:login')
+
+class ListEvents(LoginRequiredMixin, ListView):
+    model = Eventos
+    template_name = 'admin/eventos/listar.html'
+    login_url = reverse_lazy('admin:login')
+
+class HideArtist(LoginRequiredMixin, DeleteView):
+    model = Artistas
+    template_name = 'admin/bandas/eliminar.html'
+    success_url = reverse_lazy('admin:list_artist')
+
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        self.object.activo = False
+        self.object.save()
+        return HttpResponseRedirect(success_url)

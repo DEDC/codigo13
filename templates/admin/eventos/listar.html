@@ -12,7 +12,7 @@
         </form>
     </div>
     <div class="card-panel">
-        <h5 class="grey-text center-align text-darken-2"><b>Listado de artistas/bandas</b></h5>
+        <h5 class="grey-text center-align text-darken-2"><b>Listado de eventos</b></h5>
         <p class="grey-text">{{object_list.count}} resultado(s)</p>
         <ul class="collapsible">
             {% for pdt in object_list %}
@@ -25,55 +25,68 @@
                         <a class='dropdown-trigger' href='#' data-target='dropdown{{pdt.pk}}'><i
                                 class="material-icons grey-text text-darken-2">more_vert</i></a>
                         <ul id='dropdown{{pdt.pk}}' class='dropdown-content'>
-                            <li><a href="{% url 'admin:edit_artist' pdt.slug %}"
-                                    class="grey-text text-darken-2"><i class="material-icons">edit</i>Editar</a></li>
-                            <li><a href="{% url 'admin:hide_artist' pdt.pk %}" class="grey-text text-darken-2"><i
-                                        class="material-icons">delete</i>Ocultar</a></li>
+                            <li><a href="#!" class="grey-text text-darken-2"><i
+                                        class="material-icons">check</i>Contratar</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="collapsible-body">
                     <div class="row">
                         <div class="col l4 m4 s12">
+                            <h6><b>Artista</b></h6>
+                            <span>{{pdt.artista.nombre}}</span>
+                        </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Imagen</b></h6>
+                            <span>
+                                <div uk-lightbox>
+                                    <a href="{{pdt.artista.imagen.url}}" class="grey-text"><i
+                                            class="material-icons">wallpaper</i></a>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l4 m4 s12">
                             <h6><b>Folio</b></h6>
-                            <span><a target="__blank"
-                                    href="#">{{pdt.folio}}</a></span>
+                            <span><a target="__blank" href="#">{{pdt.folio}}</a></span>
                         </div>
                         <div class="col l4 m4 s12">
-                            <h6><b>Nombre</b></h6>
-                            <span>{{pdt.nombre}}</span>
+                            <h6><b>Fecha</b></h6>
+                            <span>{{pdt.fecha}}</span>
                         </div>
                         <div class="col l4 m4 s12">
-                            <h6><b>Descripción</b></h6>
+                            <h6><b>Fecha de solicitud</b></h6>
+                            <span>{{pdt.fecha_reg}}</span>
+                        </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Hora</b></h6>
+                            <span>{{pdt.hora}} hrs.</span>
+                        </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Descripción del evento</b></h6>
                             <a href="#" class="grey-text"><i class="material-icons">subject</i></a>
                             <div uk-dropdown="mode: click; pos: bottom-center">
                                 {{pdt.descripcion}}
                             </div>
                         </div>
+                        <div class="col l4 m4 s12">
+                            <h6><b>Lugar del evento</b></h6>
+                            <span>{{pdt.lugar}}</span>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col l4 m4 s12">
-                            <h6><b>Imagen</b></h6>
-                            <span>
-                                <div uk-lightbox>
-                                    <a href="{{pdt.imagen.url}}" class="grey-text"><i
-                                            class="material-icons">wallpaper</i></a>
-                                </div>
-                            </span>
+                            <h6><b>Nombre del contacto</b></h6>
+                            <span>{{pdt.nombre_cto}}</span>
                         </div>
                         <div class="col l4 m4 s12">
-                            <h6><b>Fechas registradas</b></h6>
-                            <ul>
-                                {% for dt in pdt.data.dates %}
-                                <li>{{dt}}</li>                        
-                                {% endfor %}
-                            </ul>
+                            <h6><b>Teléfono del contacto</b></h6>
+                            <span>{{pdt.telefono_cto}}</span>
                         </div>
                         <div class="col l4 m4 s12">
-                            <h6><b>Precio por hora</b></h6>
-                            <span>
-                                ${{pdt.precio_hora}}
-                            </span>
+                            <h6><b>Correo del contacto</b></h6>
+                            <span>{{pdt.correo_cto}}</span>
                         </div>
                     </div>
                 </div>
